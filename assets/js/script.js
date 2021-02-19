@@ -75,15 +75,19 @@ $(".card .list-group").sortable({
   helper: "clone",
   activate: function (event, ui) {
     console.log(ui);
+    $(this).addClass("dropover");
   },
   deactivate: function (event, ui) {
     console.log(ui);
+    $(this).addClass("dropover");
   },
   over: function (event) {
     console.log(event);
+    $(this).addClass("dropover-active");
   },
   out: function (event) {
     console.log(event);
+    $(this).addClass("dropover-active");
   },
   update: function () {
     var tempArr = [];
@@ -255,6 +259,11 @@ $("#remove-tasks").on("click", function () {
   saveTasks();
 });
 
+setInterval(function () {
+  $(".card .list-group-item").each(function (index, el) {
+    auditTask(el);
+  });
+}, 5000);
 // load tasks for the first time
 loadTasks();
 
